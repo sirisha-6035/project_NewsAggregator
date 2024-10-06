@@ -1,0 +1,54 @@
+.footer-container
+  //- Quick Links
+  .footer-section.quick-links
+    h4 Quick Links
+    ul
+      li
+        a(href="./index", aria-label="Home") Home
+      li
+        a(href="./aboutus", aria-label="About Us") About Us
+      li
+        a(href="./login", aria-label="Login") Login
+      
+  //- Contact Information
+  .footer-section.contact-info
+    h4 Contact Us
+    p
+      | Email: 
+      a(href="mailto:contact@codesync.com", aria-label="Send Email") contact@codesync.com
+    p
+      | Phone: 
+      a(href="tel:+1234567890", aria-label="Call Phone") +1 234 567 890
+
+  //- Newsletter Subscription
+  .footer-section.newsletter
+  h4 Subscribe to our Newsletter
+  form(action="/subscribe", method="POST", id="newsletterForm", aria-label="Newsletter Subscription")
+    input(
+      type="email",
+      id="newsletter-email",
+      name="email",
+      placeholder="Enter your email",
+      required,
+      aria-label="Email Address"
+    )
+    button(type="submit", aria-label="Subscribe to Newsletter") Subscribe
+
+
+  //- Social Media Icons
+  .footer-section.social-icons
+    h4 Follow Us
+    a(href="https://facebook.com/codesync", target="_blank", aria-label="Facebook", rel="noopener noreferrer")
+      i.fab.fa-facebook-f
+    a(href="https://twitter.com/codesync", target="_blank", aria-label="Twitter", rel="noopener noreferrer")
+      i.fab.fa-twitter
+    a(href="https://instagram.com/codesync", target="_blank", aria-label="Instagram", rel="noopener noreferrer")
+      i.fab.fa-instagram
+    a(href="https://linkedin.com/company/codesync", target="_blank", aria-label="LinkedIn", rel="noopener noreferrer")
+      i.fab.fa-linkedin-in
+
+//- Footer Bottom and Back to Top
+.footer-bottom
+  p &copy; 2024 Code Sync. All Rights Reserved.
+  a(href="#header", class="back-to-top", aria-label="Back to Top")
+    i.fas.fa-arrow-up Back to Top

@@ -1,0 +1,14 @@
+div.logo Code Sync
+nav
+  a(href="./index") Home
+  a(href="./aboutus") About Us
+  a(href="./contact") Contact
+  a(href="./practice") Practice
+div.header-right
+  button#theme-toggle.theme-toggle(aria-label="Toggle Theme") 🌙
+  div.user-profile
+  span.username #{username}  
+  button.user-dropdown-btn(aria-haspopup="true" aria-expanded="false" aria-label="User Menu") ▼
+  div.user-dropdown-content(aria-label="User Dropdown Menu")
+    a#logout(href="/index" aria-label="Logout") Logout
+
