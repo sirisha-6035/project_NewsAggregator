@@ -7,6 +7,7 @@ block content
   main
     .form
       h1.heading Register
+      form(action="/register" method="POST")
       input(type="text", placeholder="Name", autocomplete="off", class="name", required)
       input(type="email", placeholder="E-mail", autocomplete="off", class="email", required)
       input(type="number", placeholder="Num", autocomplete="off", class="num", required)

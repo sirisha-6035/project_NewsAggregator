@@ -190,69 +190,56 @@ if (chatroomBtn) {
 }
 
 // Function to simulate running code
-// function runCode() {
-//     const code = codeEditor.value;
-//     if (outputBox) {
-//         if (code.trim().length === 0) {
-//             outputBox.innerHTML = "<p style='color: red;'>Please enter some code!</p>";
-//         } else if (code.includes("print") || code.includes("System.out.println")) {
-//             let output = "Simulated Output: ";
-//             const match = code.match(/"(.*?)"/);
-//             if (match) {
-//                 output += sanitizeHTML(match[1]);
-//             } else {
-//                 output += "No output found.";
-//             }
-//             outputBox.innerHTML = `<p style='color: green;'>${output}</p>`;
-//         } else if (code.toLowerCase().includes("python")) {
-//             outputBox.innerHTML = "<p style='color: green;'>Python Code Detected!</p>";
-//         } else if (code.toLowerCase().includes("java")) {
-//             outputBox.innerHTML = "<p style='color: green;'>Java Code Detected!</p>";
-//         } else if (code.toLowerCase().includes("c++")) {
-//             outputBox.innerHTML = "<p style='color: green;'>C++ Code Detected!</p>";
-//         } else if (code.toLowerCase().includes("c")) {
-//             outputBox.innerHTML = "<p style='color: green;'>C Code Detected!</p>";
-//         } else {
-//             outputBox.innerHTML = "<p style='color: blue;'>Code detected, but no specific action taken!</p>";
-//         }
-//     }
-// }
-async function runCode() {
+// Function to simulate running code
+function runCode() {
     const code = codeEditor.value;
+    const language = determineLanguage(code); // A function that determines the language based on the code input (implement this logic as per your needs)
     if (outputBox) {
         if (code.trim().length === 0) {
             outputBox.innerHTML = "<p style='color: red;'>Please enter some code!</p>";
             return;
         }
 
-        // Prepare the request payload
-        const requestBody = {
-            "language": "c", // Correct key for Piston API
-            "version": "c11", // Use C11 standard
-            "files": [{ "name": "main.c", "content": code }]
-        };
-
-        try {
-            // Make the API call
-            const response = await axios.post('https://emkc.org/api/v2/piston/execute', requestBody);
-            const output = response.data.output; // Get the output from the response
-
-            // Check for errors in the response
-            if (response.data.errors) {
-                outputBox.innerHTML = `<p style='color: red;'>Error: ${sanitizeHTML(response.data.errors)}</p>`;
-                return;
-            }
-
-            // Display the output in the output box
-            if (output) {
-                outputBox.innerHTML = `<p style='color: green;'>Output: ${sanitizeHTML(output)}</p>`;
+        // Making the API call to CodeX
+        fetch('https://codex-api.herokuapp.com/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                code: code,
+                language: language
+            }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                outputBox.innerHTML = `<p style='color: red;'>Error: ${sanitizeHTML(data.error)}</p>`;
             } else {
-                outputBox.innerHTML = "<p style='color: blue;'>No output generated.</p>";
+                outputBox.innerHTML = `<p style='color: green;'>Output: ${sanitizeHTML(data.output)}</p>`;
             }
-        } catch (error) {
-            console.error('Error executing code:', error);
-            outputBox.innerHTML = "<p style='color: red;'>Error running code. Please try again later.</p>";
-        }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            outputBox.innerHTML = "<p style='color: red;'>An error occurred while running the code. Please try again later.</p>";
+        });
+    }
+}
+
+// Example function to determine the programming language based on the code input
+function determineLanguage(code) {
+    if (code.includes("print") || code.includes("def")) {
+        return "python";
+    } else if (code.includes("System.out.println") || code.includes("public class")) {
+        return "java";
+    } else if (code.includes("#include") || code.includes("int main()")) {
+        return "cpp";
+    } else if (code.includes("#include <stdio.h>") || code.includes("void main()")) {
+        return "c";
+    } else if (code.includes("<html>")) {
+        return "html";
+    } else {
+        return "plaintext";
     }
 }
 
@@ -320,3 +307,29 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add the "Forgot Password" listener
     addForgotPasswordListener();
 });
+
+// Dark Mode Toggle
+document.getElementById('dark-mode-toggle').addEventListener('click', function() {
+    document.body.classList.toggle('dark-mode');
+  });
+  
+  // Newsletter Subscription Form Handler
+  document.getElementById('newsletter').addEventListener('submit', function(e) {
+    e.preventDefault();
+    document.getElementById('success-message').style.display = 'block';
+  });
+  
+  // Scroll-triggered Animations for Feature Cards
+  window.addEventListener('scroll', function() {
+    const cards = document.querySelectorAll('.card');
+    const triggerPoint = window.innerHeight / 5 * 4;
+    cards.forEach(function(card) {
+      const cardTop = card.getBoundingClientRect().top;
+      if (cardTop < triggerPoint) {
+        card.classList.add('show');
+      } else {
+        card.classList.remove('show');
+      }
+    });
+  });
+  

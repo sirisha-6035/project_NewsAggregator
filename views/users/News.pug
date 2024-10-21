@@ -1,0 +1,24 @@
+extends Userslayout
+
+block content
+  link(rel="stylesheet", href="/assets/css/login.css")
+
+  main.dashboard-page
+    aside.sidebar
+      ul
+        li 
+          a(href="/newsproject" class="sidebar-link") Search News
+        li
+          a(href="/event-calendar" class="sidebar-link") Event Calendar Page
+        li
+          a(href="/podcast-videocast" class="sidebar-link") Podcast and VideoCast Page
+        li
+          a(href="/user-profile" class="sidebar-link") User Profile
+        li
+          a(href="/user-engagement-rewards" class="sidebar-link") User Engagement and Rewards Page
+        li
+          a(href="/submission" class="sidebar-link") Submission Page
+
+    section.editor-section
+      h1 Welcome, #{user.name || 'Guest'}!
+

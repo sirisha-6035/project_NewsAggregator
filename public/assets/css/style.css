@@ -29,7 +29,7 @@
 }
 
 body {
-    background: url('./logo1.jpeg') no-repeat center center fixed; 
+    background: url('./image.jpg') no-repeat center center fixed; 
     background-size: cover;
     color: var(--color-light-beige); /* Changed text color for better contrast */
     min-height: 100vh;
@@ -97,40 +97,228 @@ nav a:hover {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 15px;
     padding: 40px;
+    align-items: center;
     backdrop-filter: blur(15px);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
-/* Landing Page */
-.landing {
-    text-align: center;
+body {
+    margin: 0;
+    font-family: Arial, sans-serif; /* Set a font-family if not already set */
 }
 
-.landing h1 {
+/* Landing Section */
+.landing {
+    display: flex; /* Use flexbox for alignment */
+    flex-direction: column; /* Stack items vertically */
+    justify-content: center; /* Center items vertically */
+    align-items: center; /* Center items horizontally */
+    height: 100vh; /* Full viewport height */
+    text-align: center;
+    /* Add semi-transparent background */
+    position: relative; /* For positioning the video */
+  }
+  
+  /* H1 heading style */
+  .landing h1 {
     font-size: 3em;
+    margin-bottom: 20px;
+    color: #ffffff; /* Heading color set to white */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Text shadow for contrast */
+    z-index: 2; /* Place above video */
+  }
+  
+  /* Paragraph styling */
+  .landing p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+    color: #ffffff; /* Optional: Change paragraph color to white */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6); /* Paragraph text shadow for contrast */
+    z-index: 2; /* Place above video */
+  }
+
+  /* Login Section */
+.login-section {
+    padding: 40px 20px;
+    text-align: center;
+    background-color: #f0f0f0;
+}
+
+.login-section h2 {
+    color: #640D5F; /* Dark Purple */
     margin-bottom: 20px;
 }
 
-.landing p {
-    font-size: 1.2em;
-    margin-bottom: 30px;
+.login-form {
+    display: inline-block;
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
 }
 
-.buttons .btn {
-    background-color: var(--color-medium-blue);
-    color: #000;
-    padding: 10px 20px;
-    margin: 0 10px;
-    text-decoration: none;
+.login-form input {
+    padding: 10px;
+    margin: 10px 0;
+    width: 100%;
+    border: 1px solid #ccc;
     border-radius: 5px;
-    transition: background-color 0.3s;
 }
 
-.buttons .btn:hover {
-    background-color: var(--color-dark-blue);
+.login-form button {
+    padding: 10px 20px;
+    background-color: #D91656; /* Pinkish Red */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
 }
 
+.login-form button:hover {
+    background-color: #EE66A6; /* Light Pink on hover */
+}
+
+/* Links for forgot password and username */
+.forgot-credentials {
+    margin-top: 10px;
+}
+
+.forgot-credentials a {
+    color: #D91656; /* Pinkish Red */
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.forgot-credentials a:hover {
+    text-decoration: underline;
+}
+
+/* Registration Section */
+.registration-section {
+    padding: 40px 20px;
+    text-align: center;
+    background-color: #f0f0f0;
+}
+
+.registration-section h2 {
+    color: #640D5F; /* Dark Purple */
+    margin-bottom: 20px;
+}
+
+.registration-form {
+    display: inline-block;
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+}
+
+.registration-form input {
+    padding: 10px;
+    margin: 10px 0;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.registration-form button {
+    padding: 10px 20px;
+    background-color: #D91656; /* Pinkish Red */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.registration-form button:hover {
+    background-color: #EE66A6; /* Light Pink on hover */
+}
+
+/* Links for login */
+.registration-links {
+    margin-top: 10px;
+}
+
+.registration-links a {
+    color: #D91656; /* Pinkish Red */
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.registration-links a:hover {
+    text-decoration: underline;
+}
+  
+  /* Buttons section */
+  .buttons {
+    margin-top: 20px; /* Optional: Add margin for spacing */
+    z-index: 2; /* Place above video */
+  }
+  
+  /* Button styles */
+  .buttons .btn {
+    background-color: var(--color-medium-blue); /* Use CSS variable for medium blue */
+    color: whitesmoke; /* Button text color */
+    padding: 10px 20px; /* Padding around buttons */
+    margin: 0 10px; /* Add margin between buttons */
+    text-decoration: none; /* Remove underline */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s; /* Smooth hover transition */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
+  }
+  
+  /* Button hover effect */
+  .buttons .btn:hover {
+    background-color: var(--color-dark-blue); /* Change background color on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Enhance box shadow on hover */
+  }
+  
+  /* Video Background */
+  #bg-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensure the video covers the whole screen */
+    z-index: -1; /* Ensure the video is behind the content */
+    filter: brightness(50%); /* Optional: Dim the video background for better text contrast */
+  }
+  
+  /* Glass container for text background */
+  .glass-container {
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+    border-radius: 15px;
+    padding: 50px;
+    backdrop-filter: blur(10px); /* Optional: Add blur for a "glass" effect */
+    z-index: 1;
+    margin-top: 20px; /* Ensure content is above background */
+  }
+  
+  /* Dark Mode Styling */
+  body.dark-mode {
+    background-color: #111; /* Dark background */
+    color: #f0f0f0; /* Light text for contrast */
+  }
+  
+  body.dark-mode .btn {
+    background-color: #333; /* Darker button background */
+    color: #fff; /* Light text on dark background */
+  }
+  
+  body.dark-mode .btn:hover {
+    background-color: #555; /* Lighter button background on hover */
+  }
+
+ 
+  
 /* Form Pages */
 .form-page {
     width: 100%;
@@ -448,7 +636,7 @@ nav a:hover {
 .footer {
     background-color: var(--color-footer-bg);
     color: var(--color-footer-text);
-    padding: 40px 20px 20px;
+    padding: 30px 15px; /* Reduced padding */
     text-align: center;
     position: relative;
     width: 100%;
@@ -465,14 +653,15 @@ nav a:hover {
 }
 
 .footer-section {
-    margin: 10px;
+    margin: 5px;
     flex: 1;
-    min-width: 200px;
+    min-width: 150px;
 }
 
 .footer-section h4 {
     margin-bottom: 10px;
     color: var(--color-light-beige);
+    font-size: 1.1em;
 }
 
 .footer-section ul {
@@ -481,7 +670,7 @@ nav a:hover {
 }
 
 .footer-section ul li {
-    margin-bottom: 5px;
+    margin-bottom: 4px;
 }
 
 .footer-section ul li a {
@@ -504,15 +693,21 @@ nav a:hover {
     color: var(--color-light-blue);
 }
 
-.footer-section .social-icons a {
-    margin: 0 10px;
-    color: #ccc;
-    font-size: 1.5rem;
-    transition: color 0.3s ease;
+.footer-section.social-icons a {
+    display: inline-block; /* Make sure icons are inline */
+    margin: 0 10px; /* Add horizontal spacing between icons */
+    transition: transform 0.3s ease, background-color 0.3s ease; /* Smooth hover effect */
+    padding: 8px;
+    border-radius: 50%; /* Rounded effect */
+    background-color: #f1f1f1; /* Background behind the icon */
 }
 
 .footer-section .social-icons a:hover {
     color: var(--color-light-blue);
+}
+
+.footer-section.social-icons a:hover img {
+    filter: invert(1); /* Invert icon color to white on hover for contrast */
 }
 
 .footer-section .newsletter form {
@@ -551,10 +746,10 @@ nav a:hover {
 }
 
 .footer-bottom {
-    margin-top: 20px;
+    margin-top: 10px;
     border-top: 1px solid #444;
-    padding-top: 10px;
-    font-size: 0.9rem;
+    padding-top: 5px;
+    font-size: 0.8rem;
     color: #ccc;
     display: flex;
     justify-content: space-between;
@@ -567,17 +762,23 @@ nav a:hover {
 }
 
 .back-to-top {
-    display: flex;
-    align-items: center;
-    color: #ccc;
-    text-decoration: none;
-    cursor: pointer;
-    transition: color 0.3s ease;
+    position: fixed;
+    bottom: 20px; /* Distance from the bottom */
+    right: 20px; /* Distance from the right */
+    background-color: var(--color-medium-blue); /* Background color */
+    color: white; /* Text color */
+    padding: 10px 15px; /* Padding */
+    border-radius: 5px; /* Rounded corners */
+    display: none; /* Hidden by default */
+    text-decoration: none; /* No underline */
+    transition: opacity 0.3s ease; /* Transition for smooth appearance */
+    opacity: 0.7; /* Slightly transparent */
 }
 
 .back-to-top:hover {
-    color: var(--color-light-blue);
+    opacity: 1; /* Full opacity on hover */
 }
+
 
 .back-to-top i {
     margin-right: 5px;
@@ -1277,11 +1478,54 @@ button[type="submit"]:hover, .back-link:hover {
 
 
 /*footer*/
+
 .footer {
     background-color: #333; /* Change as needed */
     color: #fff; /* Text color */
     padding: 20px 0; /* Adjust padding for overall footer size */
 }
+
+.footer-top {
+    text-align: center; /* Centering the text */
+    padding: 20px; /* Add space above and below */
+}
+
+.code-sync-text {
+    font-size: 4rem; /* Large font size */
+    font-weight: bold;
+    background: linear-gradient(to right, #222, #444, #666, #888);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.code-sync-text::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 100%);
+    animation: flash 2s infinite;
+}
+
+@keyframes flash {
+    0% {
+        left: -100%;
+    }
+    50% {
+        left: 100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
 
 .footer-container {
     max-width: 1200px; /* Adjust to your design */
@@ -1301,3 +1545,4 @@ button[type="submit"]:hover, .back-link:hover {
 .newsletter button {
     margin-top: 10px; /* Space above button */
 }
+

@@ -1,60 +1,40 @@
-//- contact.pug
 extends layout
 
 block content
-    head
-        title Contact Us - Code Sync
-        link(rel='stylesheet', href='./assets/css/style.css')
-        link(rel='icon', href='./assets/images/favicon.ico', type='image/x-icon')
-        script(src='https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js')
-        script.
-            (function(){
-                emailjs.init("YOUR_EMAILJS_USER_ID"); // Replace with your EmailJS User ID
-            })()
-    
-    body
-        //- Header Placeholder
-        #header
+  head
+    title Contact Us - News Aggregator
+    link(rel='stylesheet', href='/assets/css/style.css')
 
-        main.contact-page
-            section.contact-info
-                h1 Contact Us
-                p We're here to help! Reach out to us using any of the methods below.
-                .info-container
-                    .info-item
-                        h2 Email
-                        p: a(href='mailto:support@codesync.com') support@codesync.com
-                    .info-item
-                        h2 Phone
-                        p: a(href='tel:+1234567890') 9835042451
-                    .info-item
-                        h2 Address
-                        p 123 Code Street, 
-                          | Tech City, TC 12345
+  body
+    #header
+    main.contact-page
+      section.contact-info
+        h2 Contact Us
+        p Have any questions, feedback, or need support? Feel free to reach out to us using the form below.
 
-            section.contact-form-section
-                h2 Send Us a Message
-                form(action='https://api.web3forms.com/submit', method='POST', id='contactForm')
-                    input(type='hidden', name='access_key', value='3f1d05c9-87fa-4581-86c0-898bce7830be')
-                    .form-group
-                        label(for='name') Name
-                        span.required * 
-                        input(type='text', id='name', name='user_name', required=true)
-                    .form-group
-                        label(for='email') Email
-                        span.required * 
-                        input(type='email', id='email', name='user_email', required=true)
-                    .form-group
-                        label(for='message') Message
-                        span.required * 
-                        textarea(id='message', name='message', rows='5', required=true)
-                    button(type='submit', id='sendButton') Send Message
-                div#formStatus
+        // Display success message if it exists
+        if successMessage
+          p(style='color: green;') #{successMessage}
 
-        //- Footer Placeholder
-        #footer
+        form.contact-form(action="/contact" method="POST")
+          .form-group
+            label(for="name") Name:
+            input#name(type="text" name="name" placeholder="Your Full Name" required)
 
-        //- JavaScript Files
-        script(src='./assets/js/header.js')
-        script(src='./assets/js/footer.js')
-        script(src='./assets/js/script.js')
+          .form-group
+            label(for="email") Email:
+            input#email(type="email" name="email" placeholder="Your Email" required)
+
+          .form-group
+            label(for="message") Message:
+            textarea#message(name="message" rows="5" placeholder="Your Message" required)
+
+          .form-group
+            button(type="submit") Send Message
+
+      .social-contact
+        p You can also reach us on our social platforms:
+        ul
+          li: a(href="https://twitter.com/YourNewsAggregator" target="_blank") Twitter
+          li: a(href="https://facebook.com/YourNewsAggregator" target="_blank") Facebook
+          li: a(href="mailto:support@newsaggregator.com") Email: support@newsaggregator.com

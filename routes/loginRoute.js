@@ -1,33 +1,51 @@
 const express = require('express');
-const router = express.Router();
-const fs = require('fs');
 const path = require('path');
+const jwt = require('jsonwebtoken');
+const User = require('../models/User');
+const cookieParser = require('cookie-parser'); 
 
-// Path to the data file
-const dataFilePath = path.join(__dirname, '../data', 'users.json');
+const app = express();
+app.use(cookieParser()); // Add cookie-parser middleware
 
-// Handle login
-router.post('/', (req, res) => {
-    const { username, password } = req.body;
+const router = express.Router();
 
-    // Load existing users from users.json
-    fs.readFile(dataFilePath, 'utf8', (err, data) => {
-        if (err) {
-            return res.status(500).send('Error reading user data');
-        }
+router.post('/login', async (req, res) => {
+    console.log("login route");
 
-        const users = data ? JSON.parse(data) : [];
+    const { email, password } = req.body;
 
-        // Find the user with matching username and password
-        const user = users.find(user => user.email === email && user.password === password);
+    // Check if email and password are provided
+    if (!email || !password) {
+        return res.status(400).send("Email and password are required.");
+    }
 
+    try {
+        const user = await User.findOne({ email });
         if (!user) {
-            return res.status(401).send('Invalid email or password');
+            console.log("User not found");
+            return res.redirect('/login');  // Redirect back to login if user not found
         }
 
-        // Successful login
-        res.render('dashboard', { username});
-    });
+        // Compare the password
+        const isPasswordValid = await user.comparePassword(password);
+        if (!isPasswordValid) {
+            console.log("Password does not match");
+            return res.redirect('/login');  // Redirect back to login if password doesn't match
+        }
+
+        // If login successful, sign the JWT and set it as a cookie
+        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        console.log("JWT token: ", token);
+
+        // Set the token as an HTTP-only cookie
+        res.cookie('token', token, { httpOnly: true });
+
+        // Redirect to the protected route after successful login
+        return res.redirect('/Users/News');
+    } catch (error) {
+        console.error("Login error: ", error);
+        return res.status(500).send("Internal server error.");
+    }
 });
 
 module.exports = router;

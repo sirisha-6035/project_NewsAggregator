@@ -1,0 +1,50 @@
+doctype html
+html(lang="en")
+
+  head
+    meta(charset="utf-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css", rel="stylesheet", integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3", crossorigin="anonymous")
+    link(rel="stylesheet", href="./assets/CSS/news.css")
+    title News Website
+
+  body.m-0.p-0
+
+    .container-fluid.m-0.p-0
+
+      // navbar
+      nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+        .container-fluid
+          a.navbar-brand.text-warning(href="#") News34
+          button.navbar-toggler(type="button", data-bs-toggle="collapse", data-bs-target="#navbarSupportedContent", aria-controls="navbarSupportedContent", aria-expanded="false", aria-label="Toggle navigation")
+            span.navbar-toggler-icon
+          .collapse.navbar-collapse#navbarSupportedContent
+            ul.navbar-nav.me-auto.mb-2.mb-lg-0
+              li.nav-item
+                a.nav-link(aria-current="page", href="#genral", id="genral") Genral
+              li.nav-item
+                a.nav-link(aria-current="page", href="#business", id="business") Business
+              li.nav-item
+                a.nav-link(href="#sports", id="sport") Sports
+              li.nav-item
+                a.nav-link(aria-current="page", href="#tehnology", id="technology") Technology
+              li.nav-item
+                a.nav-link(href="#entertainment", id="entertainment") Entertainment
+            form.d-flex
+              input.form-control(me-2, type="text", id="newsQuery", placeholder="Search news")
+              button.btn.btn-outline-warning(type="button", id="searchBtn") Search
+
+      // News
+      .row.m-3#newsType
+      .row.me-2.ms-2#newsdetails
+
+      // footer
+      nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.mt-4
+        .container-fluid.m-0.p-0
+          h5.text-white.me-auto.ms-auto Code
+            | Logic
+            span.text-warning Code Logic
+
+    script(src="./assets/javascript/news.js")
+    script(src="./assets/javascript/sidebar.js")
+    script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js", integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p", crossorigin="anonymous")

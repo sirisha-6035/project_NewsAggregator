@@ -8,16 +8,15 @@ function sanitizeHTML(str) {
 // Function to load the header with user profile
 function loadHeader() {
     // Retrieve the username from localStorage; default to 'Guest' if not found
-    const username = localStorage.getItem('username') || 'Guest';
+    const username = localStorage.getItem('name') || 'Guest';
 
     document.getElementById("header").innerHTML = `
         <header>
-            <div class="logo">Code Sync</div>
+            <div class="logo">News Aggregator</div>
             <nav>
-                <a href="./index">Home</a>
+                <a href="./">Home</a>
                 <a href="./aboutus">About Us</a>
                 <a href="./contact">Contact</a>
-                <a href="./practice">Practice</a>
             </nav>
             <div class="header-right">
                 <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Theme">🌙</button>
@@ -45,7 +44,7 @@ function updateUsername(newUsername) {
     const usernameElement = document.querySelector('.user-profile .username');
 
     // Update the username in localStorage
-    localStorage.setItem('username', sanitizedUsername);
+    localStorage.setItem('${username}', sanitizedUsername);
 
     // Update the displayed username
     if (usernameElement) {
@@ -90,28 +89,33 @@ function addUserProfileListeners() {
     const dropdownContent = document.querySelector('.user-dropdown-content');
     const logoutBtn = document.getElementById('logout');
 
-    // Toggle dropdown visibility
-    dropdownBtn.addEventListener('click', function() {
-        const expanded = dropdownBtn.getAttribute('aria-expanded') === 'true' || false;
-        dropdownBtn.setAttribute('aria-expanded', !expanded);
-        dropdownContent.style.display = expanded ? 'none' : 'block';
-    });
+    // Check if dropdownBtn and dropdownContent exist before adding event listeners
+    if (dropdownBtn && dropdownContent) {
+        // Toggle dropdown visibility
+        dropdownBtn.addEventListener('click', function() {
+            const expanded = dropdownBtn.getAttribute('aria-expanded') === 'true' || false;
+            dropdownBtn.setAttribute('aria-expanded', !expanded);
+            dropdownContent.style.display = expanded ? 'none' : 'block';
+        });
 
-    // Close the dropdown when clicking outside
-    window.addEventListener('click', function(event) {
-        if (!event.target.matches('.user-dropdown-btn') && !event.target.closest('.user-profile')) {
-            if (dropdownContent.style.display === 'block') {
-                dropdownContent.style.display = 'none';
-                dropdownBtn.setAttribute('aria-expanded', 'false');
+        // Close the dropdown when clicking outside
+        window.addEventListener('click', function(event) {
+            if (!event.target.matches('.user-dropdown-btn') && !event.target.closest('.user-profile')) {
+                if (dropdownContent.style.display === 'block') {
+                    dropdownContent.style.display = 'none';
+                    dropdownBtn.setAttribute('aria-expanded', 'false');
+                }
             }
-        }
-    });
+        });
+    }
 
     // Handle logout
-    logoutBtn.addEventListener('click', function(event) {
-        event.preventDefault();
-        logout();
-    });
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', function(event) {
+            event.preventDefault();
+            logout();
+        });
+    }
 }
 
 // Function to handle logout
@@ -130,14 +134,17 @@ function login(username) {
 }
 
 // Add event listener to the login button
-document.getElementById('loginBtn').addEventListener('click', function() {
-    const enteredUsername = document.getElementById('loginUsername').value;
-    if (enteredUsername) {
-        login(enteredUsername); // Call login function with entered username
-    }
-});
-
-// Load the header when the page is first loaded
 document.addEventListener('DOMContentLoaded', function() {
+    const loginBtn = document.getElementById('loginBtn');
+    if (loginBtn) {
+        loginBtn.addEventListener('click', function() {
+            const enteredUsername = document.getElementById('loginUsername').value;
+            if (enteredUsername) {
+                login(enteredUsername); // Call login function with entered username
+            }
+        });
+    }
+
+    // Load the header when the page is first loaded
     loadHeader();
 });

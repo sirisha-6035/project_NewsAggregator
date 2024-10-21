@@ -17,7 +17,7 @@ body {
 
 /* Header styles */
 #header {
-    background-color: #4CAF50; /* Green background */
+    background-color: #29228e; /* Green background */
     color: white; /* White text */
     padding: 10px 0; /* Padding for the header */
     text-align: center; /* Center align the text */
@@ -63,7 +63,7 @@ input[type="date"] {
 button.submit-btn {
     width: 100%; /* Full width button */
     padding: 10px; /* Padding inside the button */
-    background-color: #4CAF50; /* Green background */
+    background-color: #2c1b64; /* Green background */
     color: white; /* White text */
     border: none; /* No border */
     border-radius: 5px; /* Rounded corners */
@@ -74,7 +74,7 @@ button.submit-btn {
 
 /* Button hover effect */
 button.submit-btn:hover {
-    background-color: #45a049; /* Darker green on hover */
+    background-color: #1f227d; /* Darker green on hover */
 }
 
 /* Alert message styles */
